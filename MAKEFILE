@@ -1,0 +1,72 @@
+# -------------------------------------------------------
+# OS detection for PREFIX defaults
+# -------------------------------------------------------
+UNAME_S := $(shell uname -s)
+
+ifeq ($(UNAME_S),Linux)
+    PREFIX ?= /usr/local
+endif
+
+ifeq ($(UNAME_S),Darwin)
+    # Apple Silicon Homebrew default
+    ifeq ($(shell test -d /opt/homebrew && echo yes),yes)
+        PREFIX ?= /opt/homebrew
+    else
+        PREFIX ?= /usr/local
+    endif
+endif
+
+# Windows (MINGW / Git Bash)
+ifeq ($(findstring MINGW,$(UNAME_S)),MINGW)
+    PREFIX ?= C:/Program\ Files/silero-vad
+    MODEL_DIR ?= $(PREFIX)/models
+endif
+
+# -------------------------------------------------------
+# Configurable install locations
+# -------------------------------------------------------
+BINDIR       ?= $(PREFIX)/bin
+SHAREDIR     ?= $(PREFIX)/share
+MODEL_DIR    ?= $(SHAREDIR)/silero-vad
+MODEL_FILE   ?= silero_vad.onnx
+MODEL_PATH   = $(MODEL_DIR)/$(MODEL_FILE)
+
+# g++ build flags
+CXX          ?= g++
+CXXFLAGS     = -O3 -march=native -std=c++17 -I/usr/include/onnxruntime
+LDFLAGS      = -lonnxruntime
+DEFS         = -DMODEL_PATH=\"$(MODEL_PATH)\"
+
+# Sources
+SRC          = main.cpp wav.cpp
+BIN          = vad
+
+# -------------------------------------------------------
+# Build
+# -------------------------------------------------------
+all: $(BIN)
+
+$(BIN): $(SRC)
+	$(CXX) $(CXXFLAGS) $(DEFS) $(SRC) $(LDFLAGS) -o $(BIN)
+
+# -------------------------------------------------------
+# Install (binary + model)
+# -------------------------------------------------------
+install: $(BIN)
+	install -Dm755 $(BIN) $(DESTDIR)$(BINDIR)/$(BIN)
+	install -Dm644 $(MODEL_FILE) $(DESTDIR)$(MODEL_PATH)
+
+# -------------------------------------------------------
+# Uninstall
+# -------------------------------------------------------
+uninstall:
+	rm -f $(DESTDIR)$(BINDIR)/$(BIN)
+	rm -f $(DESTDIR)$(MODEL_PATH)
+
+# -------------------------------------------------------
+# Clean
+# -------------------------------------------------------
+clean:
+	rm -f $(BIN)
+
+.PHONY: all install uninstall clean
