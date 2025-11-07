@@ -1,3 +1,9 @@
+This project includes code from:
+
+  WavReader / WavWriter (c) 2016 Personal (Binbin Zhang)
+  Licensed under the Apache License, Version 2.0.
+
+
 # Portions of this project are derived from Silero VAD
 # Original project: https://github.com/snakers4/silero-vad
 # Copyright (c) 2021 snakers4
