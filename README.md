@@ -25,8 +25,6 @@ sudo curl -Lo /usr/local/include/miniaudio.h \
 
 ------------------------------------------------------------------------
 
-# Model Installation & Building the Binary
-
 ## Linux (Arch & other distros)
 
 ### Download model
@@ -96,35 +94,10 @@ Files installed to:
     C:\Program Files\silero-vad\bin\vad.exe
     C:\Program Files\silero-vad\models\silero_vad.onnx
 
-------------------------------------------------------------------------
-
-# Build
-
-``` sh
-make
-```
-
-# Install (Linux/macOS default prefix `/usr/local`)
-
-``` sh
-sudo make install
-```
-
-# Uninstall
-
-``` sh
-sudo make uninstall
-```
-
-# Rebuild cleanly
-
-``` sh
-make clean
-```
 
 ------------------------------------------------------------------------
 
-# Utilities
+# Included Utilities
 
 ### `vad`
 
@@ -136,23 +109,33 @@ vad input.wav > output
 
 ### `find_silence`
 
-Sorts silence segments from `vad`:
+Prints silence segments from `vad` output, sort with `--long` or `--short`:
 
 ``` sh
-find_silence < vad_output > sorted
+find_silence [arg] vad_output > sorted
 ```
 
 ### `unstable_rt_vad`
 
-Realtime mic VAD.
+Realtime mic VAD. Detection normalization is force reset after each start&end; realtime output; apparent duplicate frames issue
 
 ### `rt_aad`
 
-Realtime audio activity detection.
+Show microphone audio activity detection events at or above given threshhold; show peak levels and timestamps; optionally, play a sound on each detection.
+
+``` sh
+./rt_aad drop.wav .004
+```
 
 ### `rt_vad_global_reset`
 
-Realtime VAD with manual/auto reset.
+Realtime VAD on mic or desktop stream. Manual and auto reset reduces misalignment and repeated framing. Logs resets.
+
+``` sh
+./rt_vad_global_reset               # mic
+./rt_vad_global_reset [--source=dt] # desktop
+```
+
 
 ------------------------------------------------------------------------
 
@@ -198,9 +181,7 @@ g++ -O3 -march=native -std=gnu++17 rt_vad_global_reset.cpp \
 
 # Audio Activity Detection Example
 
-``` sh
-./rt_aad drop.wav .004
-```
+
 
 ### Suggested microphone thresholds
 
