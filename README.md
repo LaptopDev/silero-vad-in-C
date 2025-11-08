@@ -3,6 +3,7 @@
 -   Build all utils with `make`
 -   Confirm audio and model paths can be dynamically set regardless of
     build-time paths
+-   Make realtime vad utilities operate on both desktop and microphone audio 
 
 ------------------------------------------------------------------------
 
