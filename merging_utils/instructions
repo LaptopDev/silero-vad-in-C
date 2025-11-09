@@ -1,0 +1,7 @@
+Previously done:
+./vad speech/recorder.wav > output
+
+Now:
+./1-create_tag output > tagged
+./2-create_merge tagged > merged
+./3-min_cut merged > completed
