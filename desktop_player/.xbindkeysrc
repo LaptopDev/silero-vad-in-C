@@ -1,0 +1,7 @@
+# Ctrl+Alt+ScrollUp → run seek +2
+"/home/user/system-scripts/seek-anywhere.sh 5"
+  Control + Alt + b:9
+
+# Ctrl+Alt+ScrollDown → run seek -2
+"/home/user/system-scripts/seek-anywhere.sh -5"
+  Control + Alt + b:8
