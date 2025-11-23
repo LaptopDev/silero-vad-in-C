@@ -8,3 +8,13 @@ scripts,
   another being another shell script. 
   And finally, there is a plugin script for MPV, 
     which enables the persistence of a background playing audio file without its closure, unless, of course, the process is killed.
+
+
+
+ Some other things that could be good that I still haven't done are related to the overlay, 
+to show transcription snippet on the screen representing the current playback position in the transcribed audio file being played back.
+
+ Also, "Dunstify" message should do something. Not sure what, maybe the notification should
+   display the file name played.
+ I was thinking maybe displaying realtime file positional information but that's probably going to best be done with a second ./overlay file
+   
