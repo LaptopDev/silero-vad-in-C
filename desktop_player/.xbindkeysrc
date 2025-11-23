@@ -6,10 +6,10 @@
 "/home/user/system-scripts/seek-anywhere.sh -5"
   Control + Alt + b:8
 
-# Ctrl+Alt + WheelUp → dynamic forward scrubbing
+# Ctrl+Alt + WheelUp → dynamic forward scrubbing (mpv only)
 "printf '{\"command\":[\"script-message\",\"scrollseek\",\"up\"]}\n' | socat - /tmp/mpvsock"
   Control + Alt + b:4
 
-# Ctrl+Alt + WheelDown → dynamic backward scrubbing
+# Ctrl+Alt + WheelDown → dynamic backward scrubbing (mpv only)
 "printf '{\"command\":[\"script-message\",\"scrollseek\",\"down\"]}\n' | socat - /tmp/mpvsock"
   Control + Alt + b:5
