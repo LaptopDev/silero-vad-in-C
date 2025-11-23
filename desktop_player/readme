@@ -1,6 +1,7 @@
  Multiple files go together with this. There is the 
 key bindings, which are found in 
   the DWM configuration file. 
+  and the xbindkeysrc file.
 And there are a couple of 
 scripts, 
   one of them being a shell script, 
