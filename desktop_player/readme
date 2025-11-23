@@ -1,0 +1,9 @@
+ Multiple files go together with this. There is the 
+key bindings, which are found in 
+  the DWM configuration file. 
+And there are a couple of 
+scripts, 
+  one of them being a shell script, 
+  another being another shell script. 
+  And finally, there is a plugin script for MPV, 
+    which enables the persistence of a background playing audio file without its closure, unless, of course, the process is killed.
