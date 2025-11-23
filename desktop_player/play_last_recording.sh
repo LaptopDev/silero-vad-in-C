@@ -17,7 +17,7 @@ new () {
 PLAYBACK_FILE="$(cd /home/user/.transcription && new 3 | grep .wav)"
 
 # --- 1) launch mpv ---
-mpv --input-ipc-server=/tmp/mpvsock --script=~/.config/mpv/scripts/hardboundary.lua --keep-open=yes  "$PLAYBACK_FILE" &
+mpv --input-ipc-server=/tmp/mpvsock --script=~/.config/mpv/scripts/overlay-status.lua --script=~/.config/mpv/scripts/hardboundary.lua --keep-open=yes  "$PLAYBACK_FILE" &
 
 MPV_PID=$!
 
